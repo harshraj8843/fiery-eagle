@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Forum{% endblock %}
+{% block content %}
+
+    <section id="breadcrumbs" class="breadcrumbs text-center" style="background-color: lightblue
+    ;">
+      <div class="container">
+        <h2>Welcome to Forum</h2>
+        <br>
+        <u><h2>Sorted by {{ sort_title }}</h2></u>
+      </div>
+    </section>
+
+    <section id="particles-js"></section>
+
+    <section>
+    <div class="container-fluid mt-100">
+        <div class="row">
+
+
+            {% for data in datas %}
+            <div class="col-md-11 mx-auto">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center"> 
+                        <img style="height: 50px; width: 50px;" src="{{ data.user_image.url }}" class="d-block ui-w-40 rounded-circle" alt="hello">
+                            <div class="media-body ml-3"> 
+                            <a href="{% url 'profile' data.user_id %}">{{ data.username }}</a>
+                            <div class="text-muted small">
+                                    {{ data.question_time_day }} Days
+                                    {{ data.question_time_hour }} Hours
+                                    {{ data.question_time_minute }} Minutes
+                                    {{ data.question_time_second }} Seconds
+                            </div>
+                            </div>
+                            <div class="text-muted small ml-3">
+                            <div>
+                                Member since <strong>{{ data.user_joined }}</strong>
+                            </div>
+                            <div>
+                                <strong>{{ data.user_points }}</strong> Points
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                    <div class="col-12 col-md-8">
+                        <a href="{% url 'question' data.question_id %}">
+                        <h2>{{ data.question_title }}</h2>
+                        </a>
+                        <br>
+                            Tags :- 
+                            {% for tag in data.question_tags %}
+                            <strong style="background: lightblue;">{{ tag }}</strong>&nbsp;&nbsp;
+                            {% endfor %}
+                    </div> 
+                    </div>
+                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+
+                        <div class="col-12 col-md-8 row">
+                        <div class="media-body px-4 pt-3 mx-auto"> 
+                            <span class="">{{ data.question_upvote }}</span> 
+                            <div class="text-muted small">Votes</div>
+                        </div>
+                        <div class="media-body px-4 pt-3 mx-auto"> 
+                            <span class="">{{ data.question_answer }}</span> 
+                            <div class="text-muted small">Answer</div>
+                        </div>
+                        <div class="media-body px-4 pt-3 mx-auto"> 
+                            <span class="">{{ data.question_view }}</span> 
+                            <div class="text-muted small">Views</div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-4 row">
+                        <div class="px-4 pt-3 mx-auto"> 
+                            <a href="{% url 'post_answer' data.question_id %}" class="btn btn-outline-primary">Reply</a>
+                        </div>
+                        <div class="px-4 pt-3 mx-auto"> 
+                            <a href="{% url 'question_report' data.question_id %}" class="btn btn-outline-danger">Report</a>
+                        </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+
+{% endblock %}
+{% block post %}
+    <a href="{% url 'post' %}" class="post-question"><i><b><i>POST</i></b></i></a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+    <div class="container text-center">
+        <br>
+        <h2>CONTACT US</h2>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">SUBMIT</button>
+            <br><br><br>
+        </form>
+    </div>
+{% endblock %}

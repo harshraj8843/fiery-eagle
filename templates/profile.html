@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col-xl-8 col-lg-7 mx-auto">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary mx-auto">USER PROFILE</h6>
+            </div>
+            <div class="card-body text-center text-info">
+                <h2>Username : {{ userdata.username }}</h2>
+                <br>
+                <h2>Date Joined : {{ userdata.user_joined }}</h2>
+                <br>
+                <h2>Total Points : {{ userdata.user_points }}</h2>
+                <br>
+                <h2>Total Questions : {{ userdata.user_question }}</h2>
+                <br>
+                <h2>Total Answers : {{ userdata.user_answer }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+{% endblock %}

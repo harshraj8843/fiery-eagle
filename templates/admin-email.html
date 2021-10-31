@@ -1,0 +1,201 @@
+{% extends 'base1.html'%}
+{% block content %}
+
+<div id="wrapper">
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+      <div class="sidebar-brand-text mx-3">ADMIN</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_dashboard' %}">
+        <i class="fas fa-fw fa-globe"></i>
+        <span>DASHBOARD</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_user' %}">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Users</span></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_question' %}">
+        <i class="fas fa-fw fa-tasks"></i>
+        <span>Questions</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_tags' %}">
+        <i class="fas fa-fw fa-tag"></i>
+        <span>Tags</span></a>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Reports</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{% url 'admin_report_question' %}">QUESTION</a>
+          <a class="collapse-item" href="{% url 'admin_report_answer' %}">ANSWER</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-comments"></i>
+        <span>Notification</span>
+      </a>
+      <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{% url 'admin_notification_question' %}">QUESTION</a>
+          <a class="collapse-item" href="{% url 'admin_notification_answer' %}">ANSWER</a>
+        </div>
+      </div>
+    </li>
+
+   <li class="nav-item active">
+      <a class="nav-link" href="{% url 'admin_email' %}">
+        <i class="fas fa-fw fa-comment"></i>
+        <span>Email</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_message' %}">
+        <i class="fas fa-fw fa-comment"></i>
+        <span>Messages</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>PROGRAMMES</span>
+      </a>
+      <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">COMMING SOON</h6>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'forum' %}">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>SITE</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout_request' %}">
+        <i class="fas fa-fw fa-arrow-left"></i>
+        <span>LOGOUT</span></a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+  </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger badge-counter">{{ datas.notification }}</span>
+              </a>
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  NOTIFICATIONS
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'admin_notification_question' %}">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="font-weight-bold">Question : {{ datas.q_notification }}</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="{% url 'admin_notification_answer' %}">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-tasks text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="font-weight-bold">Answer : {{ datas.a_notification }}</span>
+                  </div>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="{% url 'admin_message' %}" id="messagesDropdown">
+                <i class="fas fa-envelope fa-fw"></i>
+                <span class="badge badge-danger badge-counter">{{ datas.c_count }}</span>
+              </a>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ datas.username }}</span>
+                <img class="img-profile rounded-circle" src="{{ datas.image.url }}">
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+        <div class="container-fluid">
+
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">EMAIL</h1>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-10 col-lg-8 mx-auto">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary mx-auto">Send Email</h6>
+                  </div>
+                  <div class="card-body text-center text-info">
+                    <form method="POST">
+                      {% csrf_token %}
+                      {{ form.media }}
+                      {{ form.as_p }}
+                      <button class="btn btn-primary">Done</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+          
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

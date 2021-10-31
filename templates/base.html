@@ -1,0 +1,109 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  {% block header %}{% endblock %}
+</head>
+<body>
+  <header id="header" class="header-inner-pages">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <h1 class="logo"><a href="{% url 'home' %}"><b><i>{{ data.logo }}</i></b></a></h1>
+      <nav class="nav-menu d-none d-md-block">
+        <ul>
+          <li class="active"><a href="{% url 'forum' %}">Forum</a></li>
+          <li class="drop-down"><a href="">SORT</a>
+            <ul>
+              <li><a href="{% url 'forum' %}">Sort by latest</a></li>
+              <li><a href="{% url 'forum_tags' %}">Sort by tags</a></li>
+            </ul>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="drop-down"><a href="">MORE</a>
+              <ul>
+                {% if user.is_superuser %}
+                  <li><a href="{% url 'admin_dashboard' %}">DASHBOARD</a></li>
+                {% endif %}
+                {% block post %}{% endblock %}
+                <li><a href="{% url 'top' %}">TOP USERS</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                <li><a href="{% url 'home' %}">HOME</a></li>
+                <li><a href="{% url 'logout_request' %}">LOGOUT</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'user_profile' request.user.id %}">PROFILE</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">LOGIN</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row  justify-content-center">
+          <div class="col-lg-6">
+            <h3><b><i>{{ data.logo }}</i></b></h3>
+          </div>
+        </div>
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6">
+            <form method="post" action="{% url 'subscribe' %}">
+              {% csrf_token %}
+              <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>{{ data.logo }}</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+  <a href="" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script src="{% static 'assets/particle/particles.js' %}"></script>
+  <script src="{% static 'assets/particle/app.js' %}"></script>
+  {% block footer %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}POST{% endblock %}
+{% block header %}
+    <link href="{% static 'assets/css/editor.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header" style="background-color: lightblue;">
+                            <div class="media flex-wrap w-100 align-items-center"> 
+                             <img style="height: 50px; width: 50px;" src="{{ questiondata.user_image.url }}" class="d-block ui-w-40 rounded-circle" alt="hello">
+                                <div class="media-body ml-3"> 
+                                 <a href="{% url 'profile' questiondata.user_id %}">{{ questiondata.username }}</a>
+                                 <div class="text-muted small">
+                                         {{ questiondata.question_time_day }} Days
+                                         {{ questiondata.question_time_hour }} Hours
+                                         {{ questiondata.question_time_minute }} Minutes
+                                         {{ questiondata.question_time_second }} Seconds
+                                 </div>
+                                </div>
+                                <div class="text-muted small ml-3">
+                                 <div>
+                                     Member since <strong>{{ questiondata.user_joined }}</strong>
+                                 </div>
+                                 <div>
+                                   <strong>{{ questiondata.user_points }}</strong> points
+                                 </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                         <div class="col-12">
+                           <a href="{% url 'question' questiondata.question_id %}">
+                             <h2>{{ questiondata.question_title }}</h2>
+                           </a>
+                             <br>
+                               Tags :- 
+                                   {% for tag in questiondata.question_tags %}
+                                   <strong style="background: lightblue;">{{ tag }}</strong>&nbsp;&nbsp;
+                                   {% endfor %}
+                           <hr>
+                           <br>
+                           <h6>{{ questiondata.question_desc|safe }}</h6>
+                         </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </section>
+
+    <section id="breadcrumbs" class="breadcrumbs text-center">
+        <div class="container">
+        <h2>POST Your Answer</h2>
+        <br>
+        </div>
+    </section>
+
+    <form method="post">
+        {% csrf_token %}
+        <section>
+            <div class="container text-center">
+                
+                <h2><b><i>
+                    {{ form.media }}
+                    {{ form.as_p }}
+                </i></b></h2>
+                <br>
+            </div>
+            <div class="col-10 mx-auto nopadding">
+                <button type="submit" class="publish">Publish your Answer</button>
+            </div> 
+        </section>
+    </form>
+    
+
+{% endblock %}

@@ -1,0 +1,216 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HOME</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <section id="hero">
+    <div class="hero-container">
+      <h1>Welcome to <b><i>{{ data.logo }}</i></b></h1>
+      <h2>Our motive is to connect you to programmers community.</h2>
+      <a href="{% url 'forum' %}" class="btn-get-started scrollto">Proceed To Forum</a>
+      <a href="#forum" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
+    </div>
+  </section>
+
+  <header id="header">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="{% url 'home' %}"><b><i>{{ data.logo }}</i></b></a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#forum">Forum</a></li>
+          <li><a href="#achivements">Achivements</a></li>
+          <li><a href="#live">Stats</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            <li><a href="{% url 'logout_request' %}">LOGOUT</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">LOGIN</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="forum" class="cta">
+      <div class="container">
+
+        <div class="text-center">
+          <h3>QUESTION FORUM</h3>
+          <br>
+          <p>Connect to the programmers community and find the best solution for your question.</p>
+          <br>
+          <a class="cta-btn" href="{% url 'forum' %}">Proceed to Forum</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="achivements" class="about hello">
+      <div class="container">
+        <br><br>
+        <div class="section-title">
+          <h2>Our Achievements</h2>
+        </div>
+        <div class="row counts counters">
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-user-alt-4"></i>
+              <span data-toggle="counter-up">{{ data.user }}</span>
+              <p><strong>Authentic Users</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-document-folder"></i>
+              <span data-toggle="counter-up">{{ data.question }}</span>
+              <p><strong>Total Questions</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-globe"></i>
+              <span data-toggle="counter-up">{{ data.answer }}</span>
+              <p><strong>Total Answers</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-users-alt-5"></i>
+              <span data-toggle="counter-up">{{ data.visit }}</span>
+              <p><strong>Total Visitors</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg class="about-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(12, 84, 240, 0.5)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(49, 142, 170, 0.5)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+      </svg>
+    </section>
+
+    <section id="live" class="services">
+      <div class="container">
+        <br><br>
+        <div class="section-title">
+          <h2>Today's Stats</h2>
+        </div>
+        <div class="row counts counters">
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-document-folder"></i>
+              <span data-toggle="counter-up">{{ data.t_question }}</span>
+              <p><strong>Questions Posted</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-globe"></i>
+              <span data-toggle="counter-up">{{ data.t_answer }}</span>
+              <p><strong>Answer Posted</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-users-alt-5"></i>
+              <span data-toggle="counter-up">{{ data.t_visit }}</span>
+              <p><strong>Visitors Today</strong></p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="icofont-users-alt-5"></i>
+              <span data-toggle="counter-up">{{ data.m_visit }}</span>
+              <p><strong>Visitors This Month</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row  justify-content-center">
+          <div class="col-lg-6">
+            <h3><b><i>{{ data.logo }}</i></b></h3>
+          </div>
+        </div>
+        <div class="row footer-newsletter justify-content-center">
+          <div class="col-lg-6">
+            <form method="post" action="{% url 'subscribe' %}">
+              {% csrf_token %}
+              <input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>{{ data.logo }}</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+  <a href="" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}TOP USERS{% endblock %}
+{% block content %}
+
+    <section id="breadcrumbs" class="breadcrumbs text-center">
+        <div class="container">
+        <h2>TOP USERS</h2>
+        </div>
+    </section>
+
+    <section id="particles-js"></section>
+
+    
+    <section>
+        <div class="container-fluid mt-100">
+           <div class="row">
+            {% for data in datas %}
+               <div class="col-md-12">
+                   <div class="card mb-4">
+                       <div class="card-header">
+                           <div class="media flex-wrap w-100 align-items-center"> 
+                            <img style="height: 50px; width: 50px;" src="{{ data.user_image.url }}" class="d-block ui-w-40 rounded-circle" alt="hello">
+                               <div class="media-body ml-3"> 
+                                <a href="{% url 'profile' data.user_id %}">{{ data.username }}</a>
+                               </div>
+                               <div class="text-muted small ml-3">
+                                <div>
+                                  <strong>{{ data.user_points }} Points</strong>
+                                </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               {% endfor %}
+           </div>
+       </div>
+      </section>
+
+{% endblock %}

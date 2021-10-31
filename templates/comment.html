@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Comments{% endblock %}
+{% block content %}
+
+    <section id="breadcrumbs" class="breadcrumbs text-center">
+        <div class="container">
+        <h2>comments</h2>
+        <br>
+        {% if question_title %}
+        <h2>Question Title : {{ question_title }}</h2>
+        {% else %}
+        <h2>Answer Comment</h2>
+        {% endif %}
+        </div>
+    </section>
+    <section id="particles-js"></section>
+
+    
+    <section>
+        <div class="container-fluid mt-100">
+        <div class="row">
+            {% for commentdata in commentdatas %}
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center"> 
+                            <img style="height: 50px; width: 50px;" src="{{ commentdata.user_image.url }}" class="d-block ui-w-40 rounded-circle" alt="hii">
+                            <div class="media-body ml-3"> 
+                                <a>{{ commentdata.username }}</a>
+                            </div>
+                            <div class="text-muted small ml-3">
+                                <div>
+                                <strong>{{ commentdata.description|safe }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+
+{% endblock %}
+{% block post %}
+        {% if question_id %}
+        <a href="{% url 'comment_q' question_id %}" class="post-question"><i><b><i>COMMENT</i></b></i></a>
+        {% endif %}
+        {% if answer_id %}
+        <a href="{% url 'comment_a' answer_id %}" class="post-question"><i><b><i>COMMENT</i></b></i></a>
+        {% endif %}
+    
+{% endblock %}

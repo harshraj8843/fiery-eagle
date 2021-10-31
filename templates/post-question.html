@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}POST{% endblock %}
+{% block header %}
+    <link href="{% static 'assets/css/editor.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <section id="breadcrumbs" class="breadcrumbs text-center">
+            <div class="container">
+              <h2>POST Your Question</h2>
+              <br>
+            </div>
+        </section>
+        <section>
+            <div class="container text-center">
+                
+                <h2><b><i>
+                    {{ form.media }}
+                    {{ form.as_p }}
+                </i></b></h2>
+                <br>
+            </div>
+            <div class="col-10 mx-auto nopadding">
+                <button type="submit" class="publish" id="send-my-url-to-django-button">Publish your Question</button>
+            </div> 
+        </section>
+    </form>
+    
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
