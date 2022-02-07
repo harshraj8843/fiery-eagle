@@ -5,9 +5,9 @@
 
 <div align="center">
 
-[![Github Repo Size](https://img.shields.io/github/repo-size/novicexp/fiery-eagle)](https://github.com/novicexp/fiery-eagle)
+[![Github Repo Size](https://img.shields.io/github/repo-size/harshraj8843/fiery-eagle)](https://github.com/harshraj8843/fiery-eagle)
 
-![GitHub Code Size](https://img.shields.io/github/languages/code-size/novicexp/fiery-eagle) ![GitHub Line of Code](https://img.shields.io/tokei/lines/github/novicexp/fiery-eagle)
+![GitHub Code Size](https://img.shields.io/github/languages/code-size/harshraj8843/fiery-eagle) ![GitHub Line of Code](https://img.shields.io/tokei/lines/github/harshraj8843/fiery-eagle)
 
 </div>
 
@@ -28,7 +28,7 @@ A Simple online question-answer forum.
 
 - clone project
   ```
-  git clone https://github.com/novicexp/fiery-eagle
+  git clone https://github.com/harshraj8843/fiery-eagle
   ```
   ```
   cd fiery-eagle/
